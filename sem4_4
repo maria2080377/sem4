@@ -1,0 +1,47 @@
+#include <iostream>    //Задача 4
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "RU");
+
+    int N;
+    cout << "Введите порядок матрицы: ";
+    cin >> N;
+
+    int arr[100][100];
+    int n = 1;
+    int vv = 0, nn = N - 1, ll = 0, pr = N - 1;
+
+    
+
+    while (n <= N * N) {
+        for (int j = ll; j <= pr; j++) {
+            arr[vv][j] = n++;
+        }
+        vv++;
+
+        for (int i = vv; i <= nn; i++) {
+            arr[i][pr] = n++;
+        }
+        pr--;
+
+        for (int j = pr; j >= ll; j--) {
+            arr[nn][j]=n++;
+        }
+        nn--;
+
+        for (int i = nn; i >= vv; i--) {
+            arr[i][ll]=n++;
+        }
+        ll++;
+    }
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            cout << arr[i][j] << ' ';
+        }
+        cout << endl;
+    }
+
+    
+    return 0;
+}
