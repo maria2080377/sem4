@@ -1,0 +1,57 @@
+#include <iostream>    //Задача 5
+using namespace std;
+
+int main() {
+    setlocale(LC_ALL, "RU");
+
+    int N, M;
+    cout << "Введите количество строк: ";
+    cin >> N;
+    cout << "Введите количество столбцов: ";
+    cin >> M;
+
+    int arr[10][10];
+    int res[100];
+    int n = 1, in = 0;
+    int vv = 0, nn = N - 1, ll = 0, pr = M - 1;
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < M; j++) {
+            cout<< arr[i][j]<<" ";
+        }
+        cout << endl;
+    }
+
+    while (vv<=nn && ll<=pr) {
+        for (int j = ll; j <= pr; j++) {
+            res[in++]=arr[vv][j];
+        }
+        vv++;
+
+        for (int i = vv; i <= nn; i++) {
+            res[in++] = arr[i][pr];
+        }
+        pr--;
+
+        for (int j = pr; j >= ll; j--) {
+            res[in++] = arr[nn][j];
+        }
+        nn--;
+
+        for (int i = nn; i >= vv; i--) {
+            res[in++] = arr[i][ll];
+        }
+        ll++;
+    }
+    for (int i = 0; i < N * M; i++) {
+        cout << res[i]<<" ";
+    }
+    
+    return 0;
+}
