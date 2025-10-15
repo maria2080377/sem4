@@ -1,0 +1,94 @@
+#include <iostream>       //Задача 3
+using namespace std;
+int main() {
+	setlocale(LC_ALL, "RU");
+
+	int n, m;
+	int arr[100][100];
+	int res[100][100];
+	int suma = 0, min=1000000, max=-10000000, mni=0, mxi=0,mnj = 0, mxj = 0;
+
+	cout << "Введите количество строк матрицы: ";
+	cin >> n;
+	cout << "Введите количество столбцов матрицы: ";
+	cin >> m;
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			cin >> arr[i][j];
+		}
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << arr[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] < min) {
+				min = arr[i][j];
+				mni = i;
+				mnj = j;
+			}
+		}
+		res[mni][mnj] = min;
+		min = 1000000;
+		}
+	
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[j][i] > max) {
+				max = arr[j][i];
+				mxi = i;
+				mxj = j;
+			}
+		}
+		if (res[mxi][mxj] == max) {
+			cout <<"Тип А, индекс - "<<mxi<<" "<<mxj<<", число - "<< max << endl;
+		}
+		max = -1000000;
+	}
+	
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] > max) {
+				max = arr[i][j];
+				mxi = i;
+				mxj = j;
+			}
+		}
+		res[mxi][mxj] = max;
+		max = -1000000;
+	}
+
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[j][i] < min) {
+				min = arr[j][i];
+				mni = i;
+				mnj = j;
+			}
+		}
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				cout << res[i][j] << " ";
+			}
+			cout << endl;
+		}
+		if (res[mni][mnj] == min) {
+			cout << "Тип B, индекс - " << mxi << " " << mxj << ", число - " << min << endl;
+		}
+		min = 1000000;
+	}
+		
+	
+	
+	return 0;
+}
